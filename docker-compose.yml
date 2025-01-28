@@ -14,15 +14,19 @@ services:
     build: ./nginx
     volumes:
       - static:/app/static
+      - dist:/usr/share/nginx/html
     ports:
       - "80:80"
     depends_on:
       - web
+      - frontend
   frontend:
     build:
       context: ./frontend
-    
+    volumes:
+      - dist:/app/dist
 
 volumes:
+  dist:
   static:
 
