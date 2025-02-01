@@ -11,6 +11,10 @@ services:
       context: ./backend
     ports:
       - "8000:8000"
+    environment:
+      DATABASE_URL: postgres://postgres:admin@db:5432/e_commerce
+    depends_on:
+      - db
   nginx:
     build: ./nginx
     volumes:
@@ -28,7 +32,19 @@ services:
     volumes:
       - dist:/app/dist
 
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: e_commerce
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"  # Expose the database port to the host (optional, for development)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
 volumes:
+  postgres_data:
   dist:
   static:
   media:

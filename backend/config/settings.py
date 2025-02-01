@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_docker',
+        'NAME': 'e_commerce',
         'USER': 'postgres',
         'PASSWORD': 'admin',
-        'HOST': '172.17.0.1',
+        'HOST': 'db', 
         'PORT': '5432',
     }
 }
